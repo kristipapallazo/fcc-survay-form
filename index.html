@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise Habits Survey</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="main-header">
+        <h1 id="title">Exercise Habits Survey</h1>
+        <p id="description">
+          We value your feedback. Please share your exercise habits with us.
+        </p>
+      </header>
+
+      <form id="survey-form">
+        <div class="section">
+          <label for="name" id="name-label" class="topic">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
+        <div class="section">
+          <label for="email" id="email-label" class="topic">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+        </div>
+
+        <div class="section">
+          <label for="age" id="number-label" class="topic">Age:</label>
+          <input
+            type="number"
+            id="number"
+            name="age"
+            placeholder="Enter your age"
+            min="18"
+            max="100"
+            required
+          />
+        </div>
+
+        <div class="section">
+          <label for="gender" class="topic">Gender:</label>
+          <select id="dropdown" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="prefer-not-to-say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="section">
+          <label class="topic">How often do you exercise per week?</label>
+          <select id="exercise-frequency" name="exercise-frequency">
+            <option value="0">Never</option>
+            <option value="1-2">1-2 times</option>
+            <option value="3-5">3-5 times</option>
+            <option value="6+">6 or more times</option>
+          </select>
+        </div>
+
+        <div class="section">
+          <label for="exercise-type" class="topic"
+            >What types of exercise do you engage in? (Check all that
+            apply)</label
+          >
+          <div>
+            <input
+              type="checkbox"
+              id="cardio"
+              name="exercise-type"
+              value="cardio"
+            />
+            <label for="cardio">Cardio</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="strength-training"
+              name="exercise-type"
+              value="strength-training"
+            />
+            <label for="strength-training">Strength Training</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="yoga"
+              name="exercise-type"
+              value="yoga"
+            />
+            <label for="yoga">Yoga</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="pilates"
+              name="exercise-type"
+              value="pilates"
+            />
+            <label for="pilates">Pilates</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="other"
+              name="exercise-type"
+              value="other"
+            />
+            <label for="other">Other</label>
+          </div>
+        </div>
+
+        <div class="section">
+          <label for="exercise-frequency" class="topic"
+            >How do you prefer to exercise? (Select one)</label
+          >
+          <div>
+            <input
+              type="radio"
+              id="group-exercise"
+              name="exercise-preference"
+              value="group-exercise"
+            />
+            <label for="group-exercise">Group Exercise</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="solo-exercise"
+              name="exercise-preference"
+              value="solo-exercise"
+            />
+            <label for="solo-exercise">Solo Exercise</label>
+          </div>
+        </div>
+        <div id="section">
+          <label for="comments" class="topic">Additional Comments:</label>
+          <textarea
+            id="comments"
+            name="comments"
+            placeholder="Feel free to leave any comments"
+          ></textarea>
+        </div>
+
+        <button type="submit" id="submit">Submit</button>
+      </form>
+    </div>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script>
+      // Add event listener for form submission
+      document
+        .getElementById("survey-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // prevent the default form submission behavior
+
+          // access form elements values
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const age = document.getElementById("number").value;
+          const gender = document.getElementById("dropdown").value;
+          const exerciseFrequency =
+            document.getElementById("exercise-frequency").value;
+
+          // get selected checkboxes for exercise types
+          const exerciseTypes = [];
+          const checkboxes = document.querySelectorAll(
+            "input[name='exercise-type']:checked"
+          );
+          checkboxes.forEach(function (checkbox) {
+            exerciseTypes.push(checkbox.value);
+          });
+
+          // select radio button for exercise preference
+          const exercisePreference = document.querySelector(
+            "input[name='exercise-preference']:checked"
+          ).value;
+
+          const comments = document.getElementById("comments").value;
+
+          console.log(
+            "name, email, age, gender, exerciseFrequency, exercisePreference, comments :>> ",
+            name,
+            email,
+            age,
+            gender,
+            exerciseFrequency,
+            exercisePreference,
+            comments
+          );
+          //handle form resp
+
+          // reset the form
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
